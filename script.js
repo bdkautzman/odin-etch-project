@@ -5,6 +5,10 @@ const btn = document.querySelector("button");
 btn.addEventListener("click", userInput);
 
 function userInput() {
+    if(div.hasChildNodes){
+        clearBoard();
+    }
+
     let num = prompt("How many squares per side?");
     num = Number(num);
     if (typeof(num) !== "number"){
@@ -36,5 +40,8 @@ function drawBoard(dims){
 }
 
 function clearBoard(){
-    
+    const children = Array.from(div.children);
+    for (let child of children){
+        div.removeChild(child);
+    }
 }
