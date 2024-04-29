@@ -37,11 +37,9 @@ function drawBoard(dims){
         for(let j=0; j<dims; j++){
             const square = document.createElement("div");
             square.setAttribute("class", "square");
+            square.style.opacity = 1.0;
             square.addEventListener("mouseenter", function(e){
                 randColor(square);
-                //square.setAttribute("backgroundColor", "blue");
-                //square.style.backgroundColor = "red";
-                //square.classList.add('hovered');
             });
             row.appendChild(square);
         }
@@ -56,9 +54,14 @@ function clearBoard(){
 }
 
 function randColor(element){
-    let r1, g1, b1;
-    r1 = Math.round(Math.random()*255);
-    g1 = Math.round(Math.random()*255);
-    b1 = Math.round(Math.random()*255);
-    element.style.backgroundColor = 'rgb('+r1+','+g1+','+b1+')';
+    let r, g, b, a;
+    r = Math.round(Math.random()*255);
+    g = Math.round(Math.random()*255);
+    b = Math.round(Math.random()*255);
+    a = element.style.opacity;
+    if (a*10>0){
+        a -= 0.1;
+    }
+    element.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+    element.style.opacity = a;
 }
